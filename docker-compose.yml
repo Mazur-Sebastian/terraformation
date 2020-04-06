@@ -1,12 +1,10 @@
 version: '3.7'
 
 services:
-  mongo:
-    container_name: mongo
-    image: mongo
-    restart: unless-stopped
+  mongodb:
+    image: mongo:latest
     ports:
-      - '27017:27017'
+      - 27017:27017
 
   backend:
     build: ./backend
@@ -15,7 +13,7 @@ services:
     env_file:
       - .env
     depends_on:
-      - mongo
+      - mongodb
 
   frontend:
     container_name: frontend-terraformation
@@ -24,6 +22,6 @@ services:
       context: ./frontend
 
 volumes:
-  #   pgdata:
+  mongodb_data_container:
   node_modules_backend:
   node_modules_frontend:
