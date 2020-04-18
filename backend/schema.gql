@@ -1,0 +1,37 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type GameInstanceDto {
+  id: ID!
+  users: [String!]
+  board: String!
+  gameAdditions: [String!]!
+  cards: [Int!]!
+  isDone: Boolean!
+}
+
+type Mutation {
+  createInstance(creatorId: String!): GameInstanceDto!
+}
+
+type Query {
+  getGameInstance: GameInstanceDto!
+  user(id: String!): UserDto!
+}
+
+type Resources {
+  id: Int!
+  name: String!
+  levelProduction: Int!
+  count: Int!
+}
+
+type UserDto {
+  id: ID!
+  name: String!
+  usedCards: [Int!]!
+  handCards: [Int!]!
+  points: Int!
+  resources: [Resources!]!
+}
