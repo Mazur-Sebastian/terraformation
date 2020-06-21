@@ -1,25 +1,33 @@
 import { Injectable, Inject } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 
-import { GAME_INSTANCE_SCHEMA } from 'src/constants/schemas';
+import { GAME_INSTANCE_SCHEMA } from './../constants/schemas';
 import { GameInstance } from './models/game-instance.model';
+import { InstanceCreateInput } from './dto/instance-create.dto';
 
 @Injectable()
 export class GameInstanceService {
     constructor(
         @Inject(GAME_INSTANCE_SCHEMA)
-        private readonly gameInstanceModel: Model<GameInstance>,
+        private readonly gameInstanceModel: Model<GameInstance>
     ) {}
 
-    createInstance(id: string) {
-        const createdInstance = new this.gameInstanceModel({ users: [id] });
-        console.log({ createdInstance });
-        return createdInstance.save();
+    createInstance(instanceCreateInput: InstanceCreateInput) {
+        const { creatorId, instanceName, extension } = instanceCreateInput;
+        const createdInstance = new this.gameInstanceModel({
+            users: [creatorId],
+            instanceName,
+            extensions: [extension],
+        });
+
+        const instance = createdInstance.save();
+
+        return instance;
     }
 
     async getInstance() {
         const gameInstances = await this.gameInstanceModel.find();
-        console.log({ gameInstances }, gameInstances[0]);
 
         return gameInstances;
     }

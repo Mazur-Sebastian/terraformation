@@ -8,7 +8,7 @@ import { User } from './models/user.model';
 export class UserService {
     constructor(
         @Inject(USER_SCHEMA)
-        private readonly userModel: Model<User>,
+        private readonly userModel: Model<User>
     ) {}
 
     createUser(name: string): Promise<User> {

@@ -1,32 +1,31 @@
 <template>
-    <div id="app">
-        <div id="nav">
-            <router-link to="/">Home</router-link> |
-            <router-link to="/about">About</router-link>
-        </div>
+    <v-app>
         <router-view />
-    </div>
+    </v-app>
 </template>
 
-<style lang="scss">
-#app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-}
+<script lang="ts">
+    import { Component, Vue, Provide } from 'vue-property-decorator';
+    import { select } from '@rxsv/core';
 
-#nav {
-    padding: 30px;
+    import { store, AppStore } from '@/config/rootStore';
+    import { InstanceActions } from './modules/gameInstance/rxstore';
 
-    a {
-        font-weight: bold;
-        color: #2c3e50;
+    @Component<App>({})
+    export default class App extends Vue {
+        @Provide('rxstore')
+        private get rxStore(): AppStore {
+            store.state$.subscribe();
 
-        &.router-link-exact-active {
-            color: #42b983;
+            return store;
         }
     }
-}
+</script>
+
+<style lang="scss">
+    @import url('https://fonts.googleapis.com/css?family=Lato&display=swap');
+
+    * {
+        font-family: 'Lato', sans-serif;
+    }
 </style>

@@ -6,11 +6,12 @@ export const GameInstanceSchema = new mongoose.Schema(
             type: [String],
         },
         board: { type: String },
-        gameAdditions: { type: [String] },
+        instanceName: { type: String },
+        extensions: { type: [String] },
         cards: { type: [Number] },
         isDone: { type: Boolean, default: false },
     },
     {
         timestamps: true,
-    },
+    }
 );

@@ -1,9 +1,10 @@
-import { Document } from 'mongoose';
+import {Document} from 'mongoose';
 
 export interface GameInstance extends Document {
     readonly users: string[];
     readonly board: string;
-    readonly gameAdditions: string[];
+    readonly extensions: string[];
     readonly cards: number[];
     readonly isDone: boolean;
+    readonly instanceName: string;
 }

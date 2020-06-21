@@ -5,14 +5,21 @@
 type GameInstanceDto {
   id: ID!
   users: [String!]
-  board: String!
-  gameAdditions: [String!]!
+  board: String
+  instanceName: String!
+  extensions: [String!]!
   cards: [Int!]!
   isDone: Boolean!
 }
 
+input InstanceCreateInput {
+  creatorId: String!
+  instanceName: String!
+  extension: String!
+}
+
 type Mutation {
-  createInstance(creatorId: String!): GameInstanceDto!
+  createInstance(instanceCreateInput: InstanceCreateInput!): GameInstanceDto!
 }
 
 type Query {
