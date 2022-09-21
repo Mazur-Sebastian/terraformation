@@ -29,7 +29,7 @@
     "vue-property-decorator": "^8.3.0",
     "vue-router": "^3.1.5",
     "vue-rx": "^6.2.0",
-    "vuetify": "^2.2.20"
+    "vuetify": "^2.6.10"
   },
   "devDependencies": {
     "@types/jest": "^24.0.19",
